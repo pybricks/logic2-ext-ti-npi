@@ -1,0 +1,13 @@
+{
+  "name": "TI BLE Legacy NPI",
+  "apiVersion": "1.0.0",
+  "author": "David Lechner",
+  "version": "0.0.1",
+  "description": "",
+  "extensions": {
+    "TI BLE Legacy NPI": {
+      "type": "HighLevelAnalyzer",
+      "entryPoint": "HighLevelAnalyzer.Hla"
+    }
+  }
+}
