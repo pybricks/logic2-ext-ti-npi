@@ -19,6 +19,13 @@ class PacketType(IntEnum):
 
 
 class Opcode(IntEnum):
+    @classmethod
+    def _missing_(cls, value):
+        pseudo_member = cls._member_type_.__new__(cls, value)
+        pseudo_member._value_ = value
+        pseudo_member._name_ = f"Unknown opcode: 0x{value:04X}"
+        return pseudo_member
+
     HCI_DISCONNECT = 0x0406
     HCI_READ_REMOTE_VERSION_INFO = 0x041D
     HCI_SET_EVENT_MASK = 0x0C01
@@ -167,11 +174,25 @@ class Opcode(IntEnum):
 
 
 class EventType(IntEnum):
+    @classmethod
+    def _missing_(cls, value):
+        pseudo_member = cls._member_type_.__new__(cls, value)
+        pseudo_member._value_ = value
+        pseudo_member._name_ = f"Unknown event: 0x{value:02X}"
+        return pseudo_member
+
     HCI_EVENT_COMMAND_COMPLETE = 0x0E
     HCI_EVENT_VENDOR_SPECIFIC = 0xFF
 
 
 class EventOpcode(IntEnum):
+    @classmethod
+    def _missing_(cls, value):
+        pseudo_member = cls._member_type_.__new__(cls, value)
+        pseudo_member._value_ = value
+        pseudo_member._name_ = f"Unknown event opcode: 0x{value:04X}"
+        return pseudo_member
+
     HCI_EXT_SET_RX_GAIN_EVENT = 0x0400
     HCI_EXT_SET_TX_POWER_EVENT = 0x0401
     HCI_EXT_ONE_PKT_PER_EVT_EVENT = 0x0402
